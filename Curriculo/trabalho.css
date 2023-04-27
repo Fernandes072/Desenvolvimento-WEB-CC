@@ -1,16 +1,49 @@
+body{
+    background-color: #5C9EA4;
+}
+
+h3{
+    background-color: #6C767C;
+    color: #ffffff;
+    border: solid 5px #6C767C;
+	border-radius: 5px;
+}
+
 #painel-esquerdo{
     position: absolute;
     margin-left: 10px;
     margin-top: 10px;
-    width: 300px;
-    height: 140px;
-    background-color: #000000;
+    width: 370px;
+    height: 1990px;
+    background-color: #ffffff;
+}
+
+#info-painel-esquerdo{
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 350px;
+    height: 1900px;
+    background-color: #6C767C;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 5px;
 }
 
 #painel-direito{
     position: absolute;
-    margin-left: 350px;
+    margin-left: 380px;
     margin-top: 10px;
-    width: 650px;
-    height: 140px
+    width: 720px;
+    height: 1990px;
+    background-color: #ffffff;
+}
+
+#info-painel-direito{
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 700px;
+    height: 1970px;
+    background-color: #ffffff;
 }
