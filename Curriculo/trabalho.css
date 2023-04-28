@@ -2,11 +2,19 @@ body{
     background-color: #5C9EA4;
 }
 
+h2{
+    line-height: 1.5;
+}
+
 h3{
     background-color: #6C767C;
     color: #ffffff;
     border: solid 5px #6C767C;
 	border-radius: 5px;
+}
+
+h5{
+    color: #AAA9AB;
 }
 
 a:link{
@@ -29,13 +37,21 @@ ul{
 table{
     margin-left: 20px;
     text-align: left;
+    width: 90%;
 }
+
+tr{
+    height: 30px;
+}
+
+/*td{
+    text-align: center;
+}*/
 
 hr{
     width: 90%;
     margin-left: 20px;
-    color: #ffffff;
-    height: 100px;
+    border: 1px solid #ffffff;
 }
 
 .h4-titulo{
@@ -43,23 +59,48 @@ hr{
     margin-left: 20px;
 }
 
-.info-tabela{
+#info1-tabela{
     text-align: left;
-    font-style: bold;
     margin-left: 20px;
-    line-height: 0.5;
+    line-height: 1.5;
+}
+
+#info2-tabela{
+    text-align: left;
+    margin-left: 20px;
+    line-height: 0.1;
+}
+
+.tabela-idiomas{
+    border-bottom: 1px solid #ffffff;
+}
+
+.th-idiomas-hash{
+    width: 40%;
+    text-align: center;
+}
+
+.th-habilidades{
+    width: 30%;
 }
 
 #elonmusk { 
     border-radius: 50%;
+    width:200px; 
+    height:200px; 
+}
+
+#qrcode {
+    width:140px; 
+    height:140px;
 }
 
 #painel-esquerdo{
     position: absolute;
-    margin-left: 10px;
+    margin-left: 50px; /*10px*/
     margin-top: 10px;
     width: 370px;
-    height: 1990px;
+    height: 1650px;
     background-color: #ffffff;
 }
 
@@ -68,7 +109,7 @@ hr{
     margin-left: 10px;
     margin-top: 10px;
     width: 350px;
-    height: 1900px;
+    height: 1590px;
     background-color: #6C767C;
     text-align: center;
     color: #ffffff;
@@ -77,10 +118,10 @@ hr{
 
 #painel-direito{
     position: absolute;
-    margin-left: 380px;
+    margin-left: 420px; /*380px*/
     margin-top: 10px;
     width: 720px;
-    height: 1990px;
+    height: 1650px;
     background-color: #ffffff;
 }
 
@@ -89,7 +130,7 @@ hr{
     margin-left: 10px;
     margin-top: 10px;
     width: 700px;
-    height: 1970px;
+    height: 1630px;
     background-color: #ffffff;
 }
 
