@@ -9,6 +9,51 @@ h3{
 	border-radius: 5px;
 }
 
+a:link{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+a:hover{
+    color: #d1c3c3;
+}
+
+ul{
+    text-align: left;
+    border: solid 5px #6C767C;
+	border-radius: 5px;
+    line-height: 30px;
+    margin-left: 10px;
+}
+
+table{
+    margin-left: 20px;
+    text-align: left;
+}
+
+hr{
+    width: 90%;
+    margin-left: 20px;
+    color: #ffffff;
+    height: 100px;
+}
+
+.h4-titulo{
+    text-align: left;
+    margin-left: 20px;
+}
+
+.info-tabela{
+    text-align: left;
+    font-style: bold;
+    margin-left: 20px;
+    line-height: 0.5;
+}
+
+#elonmusk { 
+    border-radius: 50%;
+}
+
 #painel-esquerdo{
     position: absolute;
     margin-left: 10px;
@@ -46,4 +91,32 @@ h3{
     width: 700px;
     height: 1970px;
     background-color: #ffffff;
+}
+
+#icon-telefone{
+    list-style-image: url('svg/telephone-fill.svg');
+}
+
+#icon-email{
+    list-style-image: url('svg/envelope-fill.svg');
+}
+
+#icon-linkedin{
+    list-style-image: url('svg/linkedin.svg');
+}
+
+#icon-github{
+    list-style-image: url('svg/github.svg');
+}
+
+#icon-twitter{
+    list-style-image: url('svg/twitter.svg');
+}
+
+#icon-site{
+    list-style-image: url('svg/globe.svg');
+}
+
+#icon-localizacao{
+    list-style-image: url('svg/geo-alt-fill.svg');
 }
