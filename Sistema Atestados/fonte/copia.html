@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Formulário de Contato</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <style>
+            body {
+                background-color: #efefef;
+            }
+            .ca-block {
+                background-color: #dddddd;
+            }
+            .border {
+                border: 1px solid #b0b0b0 !important;
+            }
+            .form-control:focus {
+                background-color: #d8ffd8;
+            }
+            .asterisco-required {
+                color: red;
+            }
+            #main-header,
+            #main-footer {
+                background-color: #17882c;
+                color: whitesmoke;
+            }
+            a {
+                color: whitesmoke;
+                text-decoration: none;
+            }
+            a:hover {
+                color: whitesmoke;
+            }
+            .zoom {
+                transition: all 0.3s;
+            }
+            .zoom:hover {
+                transform: scale(1.3);
+                transform-origin: 0%;
+            }
+        </style>
+    </head>
+    <body class="container-lg">
+        <!-- Cabeçalho da Página -->
+        <header id="main-header" class="mb-4">
+            <div class="px-4 py-3">
+                <h1>Empresa X</h1>
+            </div>
+        </header>
+
+        <!-- Principal -->
+        <main id="main-block" class="row justify-content-center">
+            <form id="contact-form" action="POST" class="col-xxl-6 col-xl-7 col-lg-8 col-md-9 col-12 border rounded px-4 py-3 ca-block">
+                <h2>Formulário de Contato</h2>
+
+                <div class="form-floating mb-2">
+                    <input id="nome" name="nome" placeholder="Nome Completo" type="text" class="form-control" />
+                    <label for="nome">Nome Completo<span class="asterisco-required"> *</span></label>
+                    <div id="nome_err"></div>
+                </div>
+
+                <div class="form-floating mb-2">
+                    <input id="email" name="email" placeholder="E-Mail" type="email" class="form-control" />
+                    <label for="email">E-Mail<span class="asterisco-required"> *</span></label>
+                    <div id="email_err"></div>
+                </div>
+
+                <div class="form-floating mb-2">
+                    <input id="telefone" name="telefone" placeholder="Telefone" type="text" class="form-control" />
+                    <label for="email">Telefone<span class="asterisco-required"> *</span></label>
+                    <div id="telefone_err"></div>
+                </div>
+
+                <div class="form-floating mb-2">
+                    <textarea id="msg" name="msg" placeholder="Mensagem" class="form-control" rows="7" style="height: 100px"></textarea>
+                    <label for="msg">Mensagem<span class="asterisco-required"> *</span></label>
+                    <div id="msg_err"></div>
+                </div>
+
+                <div class="d-md-block d-grid">
+                    <input value="Enviar" type="submit" class="btn btn-primary float-end" />
+                </div>
+            </form>
+        </main>
+
+        <!-- Rodapé da Página -->
+        <footer id="main-footer" class="mt-4">
+            <div class="px-4 py-3">
+                <h2 class="fs-3">Contato</h2>
+                <address>
+                    <div class="mb-1 zoom">
+                        <a href="https://empresax.com.br" target="_blank"><span class="bi bi-globe">&nbsp;&nbsp;empresax.com.br</span></a>
+                    </div>
+
+                    <div class="mb-1 zoom">
+                        <a href="mailto:contato@empresax.com.br"><span class="bi bi-envelope">&nbsp;&nbsp;contato@empresax.com.br</span></a>
+                    </div>
+
+                    <div class="mb-1 zoom">
+                        <a href="https://wa.me/557912345678/?text=Hello%20WhatsApp" target="_blank"><span class="bi bi-telephone">&nbsp;&nbsp;+55 (79) 1234-5678&nbsp;&nbsp;<span class="bi bi-whatsapp"></span></span></a>
+                    </div>
+
+                    <div class="mb-1 zoom">
+                        <a href="https://goo.gl/maps/LiwsbEqZthKCpRd59" target="_blank"><span class="bi bi-pin-angle">&nbsp;&nbsp;Rua Itabaiana, 690 - Centro, Aracaju - SE, 49015-110</span></a>
+                    </div>
+                </address>
+            </div>
+        </footer>
+        <script>
+            validate = {
+                /** Função para validar nomes. */
+                nome: function(s)  {
+                    let s_fmt = this.string_all_trim(s) // string formatada, tratada
+                    if ( !s_fmt ) // check string vazia (ou null)
+                        return false
+                    if ( s_fmt.split(' ').length < 2 ) // check para nome e sobrenome
+                        return false
+                    return true
+                },
+                email: function(s) {
+                    regex_email = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/
+                    let s_fmt = this.string_all_trim(s)
+                    if ( !regex_email.test(s_fmt) )
+                        return false
+                    return true
+                },
+                telefone: function(s) {
+                    regex_telf = /^\d{2}\d{4,5}\d{4}$/
+                    let s_fmt = this.string_all_trim(s)
+                    if ( !regex_telf.test(s_fmt) )
+                        return false
+                    return true
+                },
+                msg: function(s) {
+                    let s_fmt = this.string_all_trim(s)
+                    if ( !s_fmt || s_fmt.length < 80 )
+                        return false
+                    return true
+                },
+                string_all_trim: function(s) {
+                    if ( !s ) // é o mesmo que ( (s === null) || (s === '') )
+                        return s
+                    // s.replace(/\s+/,' '), substitui espaçamentos duplos ou mais por simples ' '
+                    // s = s.replace(/^\s+|\s+$/,''), remove os espaçamentos antes ou depois da string
+                    return s.replace(/\s+/g,' ').replace(/^\s+|\s+$/g,'')
+                }
+            }
+
+            for (const id of ['nome', 'email', 'telefone', 'msg']) {
+                document.getElementById(id).addEventListener('change', (ev) => {
+                    ev.target.value = validate.string_all_trim( ev.target.value )
+                })
+            }
+
+            const main_form = document.getElementById('contact-form')
+            main_form.addEventListener( 'submit', (ev) => {
+                const form_data = new FormData( main_form )
+                console.log( JSON.stringify(Object.fromEntries(form_data)) )
+                let msg_dict = {
+                    'nome_err':'', 'email_err':'', 'telefone_err':'', 'msg_err':'' }
+                if ( !validate.nome(form_data.get('nome')) )
+                    msg_dict['nome_err'] = 'Nome inválido!'
+                if ( !validate.email(form_data.get('email')) )
+                    msg_dict['email_err'] = 'Email inválido!'
+                if ( !validate.telefone(form_data.get('telefone')) )
+                    msg_dict['telefone_err'] = 'Telefone inválido!'
+                if ( !validate.msg(form_data.get('msg')) )
+                    msg_dict['msg_err'] = 'Mensagem inválida!'
+                //
+                let ok = true
+                for (const [key, value] of Object.entries(msg_dict)) {
+                    document.getElementById(key).innerText = value
+                    if ( value.length > 0 )
+                        ok = false
+                }
+                if ( ok )
+                    return true
+                ev.preventDefault()  // interrompe o submit no caso de erro no form
+                ev.stopPropagation()
+                return false
+            })
+        </script>
+    </body>
+</html>

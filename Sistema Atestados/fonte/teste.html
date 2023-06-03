@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Requerimento de Atestado</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+        <link rel="stylesheet" href="teste.css">
+        <style>
+            main{
+                margin-right: auto;
+            }
+        </style>
+    </head>
+    <!--
+        const regex_cpf = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+        function validarCPF(cpf) {
+    const regex_cpf = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+    return regex_cpf.test(cpf);
+}
+
+function validarCPF(cpf) {
+  cpf = cpf.replace(/[^\d]+/g,''); // remove all non-numeric characters
+  if (cpf.length !== 11) return false; // CPF must have 11 digits
+  // check for known invalid CPFs
+  if (/^([0-9])\1{10}$/.test(cpf)) return false;
+  // validate first digit
+  let sum = 0;
+  for (let i = 0; i < 9; i++) {
+    sum += parseInt(cpf.charAt(i)) * (10 - i);
+  }
+  let remainder = 11 - (sum % 11);
+  let digit = (remainder > 9) ? 0 : remainder;
+  if (digit !== parseInt(cpf.charAt(9))) return false;
+  // validate second digit
+  sum = 0;
+  for (let i = 0; i < 10; i++) {
+    sum += parseInt(cpf.charAt(i)) * (11 - i);
+  }
+  remainder = 11 - (sum % 11);
+  digit = (remainder > 9) ? 0 : remainder;
+  if (digit !== parseInt(cpf.charAt(10))) return false;
+  return true;
+}
+    -->
+    <body>
+        <form id="contact-form" class="col-xxl-6 col-xl-7 col-lg-8 col-md-9 col-12 rounded px-4 py-3 ca-block">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-2">
+                            <select class="form-select form-select-lg mb-3" >
+                                <option selected>Curso</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-2">
+                            <label class="cortexto">CPF2<span class="asterisco-required"> *</span></label>
+                            <input class="form-control" name="cpf" type="text" placeholder="CPF" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-floating mb-2">
+                        <input id="email" name="email" placeholder="E-Mail" type="email" class="form-control" />
+                        <label for="email">E-Mail<span class="asterisco-required"> *</span></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-2">
+                            <label>
+                            <select class="form-select form-select-lg mb-3 form-control">
+                                <option selected>Curso<span class="asterisco-required"> *</span> </option>
+                                <option value="ccomp">Ciência da Computação</option>
+                                <option value="log">Logística</option>
+                                <option value="msi">Manutenção e Suporte em Informática</option>
+                                <option value="agro">Agronegócio</option>
+                              </select>
+                            </label>
+                        </div>
+                    </div>
+            </div>
+        </form>
+    </body>
+</html>

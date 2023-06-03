@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tela de Login</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    .container {
+      max-width: 400px;
+      margin: 100px auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <form id="loginForm" onsubmit="return validateForm()">
+      <div class="form-group">
+        <label for="username">Nome de Usuário:</label>
+        <input type="text" class="form-control" id="username" placeholder="Digite seu nome de usuário" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Senha:</label>
+        <input type="password" class="form-control" id="password" placeholder="Digite sua senha" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Entrar</button>
+    </form>
+  </div>
+
+  <script>
+    function validateForm() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      if (username === "" || password === "") {
+        alert("Por favor, preencha todos os campos.");
+        return false;
+      }
+      
+      // Aqui você pode adicionar sua lógica de autenticação
+      // Por enquanto, estou apenas exibindo uma mensagem
+      alert("Login bem-sucedido!");
+      return true;
+    }
+  </script>
+</body>
+</html>
