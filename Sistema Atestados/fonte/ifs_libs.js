@@ -8,8 +8,8 @@ const form_validate = {
         'msg'     : 'Mensagem inválida!',
         'matricula': 'Matrícula inválida!',
         'cpf': 'CPF inválido!',
-        'curso': 'Curso inválido!',
-        'turma': 'Turma inválido!',
+        'curso': 'Selecione um curso!',
+        'turma': 'Selecione uma turma!',
         'arquivo': 'Arquivo inválido!',
     },
     /** Função para validar nomes. */

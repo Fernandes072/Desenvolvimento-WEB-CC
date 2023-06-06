@@ -35,13 +35,15 @@ class ContactForm {
         for (const vet of form_data.entries()) {
             let key = vet[0], value = vet[1],
                 is_valid = form_validate[key](value)
-            _(key + '_err').innerText = ( is_valid ? '' : form_validate.err_msg[key] )
+            if (key != 'msg'){
+                _(key + '_err').innerText = ( is_valid ? '' : form_validate.err_msg[key] )
             if ( is_valid )
                 _(key).classList.remove('is-invalid')
             else
                 _(key).classList.add('is-invalid')
             if ( !is_valid )
                 ok = false
+            }
         }
         return ok    
     }

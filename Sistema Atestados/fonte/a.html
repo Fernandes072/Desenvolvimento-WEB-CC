@@ -13,42 +13,99 @@
 <body>
   <main id="main-block">
     <form id="form-atestado" class="col-xxl-6 col-xl-7 col-lg-8 col-md-9 col-12 rounded px-4 py-3 ca-block">
-        <div class="container">
-            
-            <div class="row">
-                <div class="col">
-                    <div class="mb-2">
-                      <label for="arquivo" class="form-label"></label>
-                      <input class="form-control formArquivo" type="file" id="arquivo">
-                      <div id="arquivo_err" class="invalid-feedback"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="d-md-block d-grid">
-                <input value="Enviar" type="submit" class="btn btn-primary" />
-            </div>
-        </div>
-    </form>
-</main>
+      <div class="container">
+        <div class="row">
+          <div class="col">
 
+            <div class="form-floating">
+              <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+              <label for="floatingSelect">Works with selects</label>
+            </div>
+            
+          </div>
+        </div>
+        <div class="d-md-block d-grid">
+          <input value="Enviar" type="submit" class="btn btn-primary" />
+        </div>
+      </div>
+    </form>
+  </main>
   <script>
-    let formulario = document.getElementById('form-atestado');
-formulario.addEventListener('submit', function(event) {
-  event.preventDefault(); // previne o envio do formulário
-  let fileInput = document.getElementById('arquivo');
-  if (fileInput.value !== '') {
-    // enviar formulário
-    formulario.submit();
-  } else {
-    // exibir mensagem de erro
-    let elemento = document.getElementById('arquivo');
-    elemento.classList.add('is-invalid');
-    let mensagem = document.createElement('div');
-    mensagem.classList.add('invalid-feedback');
-    mensagem.innerText = 'Selecione um arquivo';
-    elemento.parentNode.appendChild(mensagem);
-  }
-});
-  </script>
+      let arquivoDrop = document.getElementById('arquivo_drop');
+      
+      arquivoDrop.addEventListener('dragover', function(event) {
+        event.preventDefault();
+        arquivoDrop.classList.add('border-primary');
+      });
+      
+      arquivoDrop.addEventListener('dragleave', function(event) {
+        event.preventDefault();
+        arquivoDrop.classList.remove('border-primary');
+      });
+      
+      arquivoDrop.addEventListener('drop', function(event) {
+        event.preventDefault();
+        arquivoDrop.classList.remove('border-primary');
+        let file = event.dataTransfer.files[0];
+        let fileType = file.type;
+        let fileSize = file.size;
+      
+        if (!fileType.startsWith('image/') && fileType !== 'application/pdf') {
+          // file type not allowed
+          let elemento = document.getElementById('arquivo_err');
+          elemento.innerText = 'Tipo de arquivo não permitido';
+          elemento.classList.add('is-invalid');
+        } else if (fileSize > 5 * 1024 * 1024) {
+          // file size too large
+          let elemento = document.getElementById('arquivo_err');
+          elemento.innerText = 'Arquivo muito grande (máximo de 5 MB)';
+          elemento.classList.add('is-invalid');
+        } else {
+          // file is valid
+          let elemento = document.getElementById('arquivo_err');
+          elemento.innerText = '';
+          elemento.classList.remove('is-invalid');
+          let fileInput = document.getElementById('arquivo');
+          fileInput.files = event.dataTransfer.files;
+        }
+      });
+      
+      arquivoDrop.addEventListener('click', function(event) {
+        event.preventDefault();
+        let fileInput = document.getElementById('arquivo');
+        fileInput.click();
+      });
+      
+      let fileInput = document.getElementById('arquivo');
+      fileInput.addEventListener('change', function() {
+        let file = fileInput.files[0];
+        let fileType = file.type;
+        let fileSize = file.size;
+      
+        if (!fileType.startsWith('image/') && fileType !== 'application/pdf') {
+          // file type not allowed
+          fileInput.value = '';
+          let elemento = document.getElementById('arquivo_err');
+          elemento.innerText = 'Tipo de arquivo não permitido';
+          elemento.classList.add('is-invalid');
+        } else if (fileSize > 5 * 1024 * 1024) {
+          // file size too large
+          fileInput.value = '';
+          let elemento = document.getElementById('arquivo_err');
+          elemento.innerText = 'Arquivo muito grande (máximo de 5 MB)';
+          elemento.classList.add('is-invalid');
+        } else {
+          // file is valid
+          let elemento = document.getElementById('arquivo_err');
+          elemento.innerText = '';
+          elemento.classList.remove('is-invalid');
+        }
+      });
+    </script>
 </body>
 </html>
