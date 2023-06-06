@@ -10,7 +10,6 @@ const form_validate = {
         'cpf': 'CPF inválido!',
         'curso': 'Curso inválido!',
         'turma': 'Turma inválido!',
-        'arquivo': 'Arquivo inválido!',
     },
     /** Função para validar nomes. */
     nome: function(s)  {
@@ -49,16 +48,11 @@ const form_validate = {
         return true
     },
     curso: function(s) {
-        if (s.value == '')
+        if ( s.value == '' )
             return false
         return true
     },
     turma: function(s) {
-        if (s.value == '')
-            return false
-        return true
-    },
-    arquivo: function(s) {
         if ( s.value == '' )
             return false
         return true

@@ -22,14 +22,14 @@
         </header>
 
         <main id="main-block">
-            <form id="form_atestado" class="col-xxl-6 col-xl-7 col-lg-8 col-md-9 col-12 rounded px-4 py-3 ca-block">
+            <form id="form-atestado" class="col-xxl-6 col-xl-7 col-lg-8 col-md-9 col-12 rounded px-4 py-3 ca-block">
                 <div class="container">
                     <div class="row">
                         <div class="col">
                             <div class="form-floating mb-2">
                                 <input id="nome" name="nome" placeholder="Nome Completo" type="text" class="form-control" />
                                 <label for="nome">Nome Completo<span class="asterisco-required"> *</span></label>
-                                <div id="nome_err"></div>
+                                <div id="nome_err" class="invalid-feedback"></div>
                             </div>
                         </div>
                     </div>
@@ -38,13 +38,14 @@
                             <div class="form-floating mb-2">
                                 <input id="matricula" name="matricula" placeholder="Matrícula" type="text" class="form-control" />
                                 <label for="matricula">Matrícula<span class="asterisco-required"> *</span></label>
+                                <div id="matricula_err" class="invalid-feedback"></div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating mb-2">
-                                <!-- CAMPO CPF AJUSTAR-->
                                 <input id="cpf" name="cpf" placeholder="CPF" type="text" class="form-control" />
                                 <label for="cpf">CPF<span class="asterisco-required"> *</span></label>
+                                <div id="cpf_err" class="invalid-feedback"></div>
                             </div>
                         </div>
                     </div>
@@ -53,33 +54,34 @@
                             <div class="form-floating mb-2">
                                 <input id="email" name="email" placeholder="E-Mail" type="email" class="form-control" />
                                 <label for="email">E-Mail<span class="asterisco-required"> *</span></label>
-                                <div id="email_err"></div>
+                                <div id="email_err" class="invalid-feedback"></div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating mb-2">
                                 <input id="telefone" name="telefone" placeholder="Telefone" type="text" class="form-control" />
                                 <label for="telefone">Telefone<span class="asterisco-required"> *</span></label>
-                                <div id="telefone_err"></div>
+                                <div id="telefone_err" class="invalid-feedback"></div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="mb-2">
-                                <select class="form-select form-select-lg mb-3">
-                                    <option selected>Curso<span class="asterisco-required"> *</span> </option>
+                                <select class="form-select form-select-lg mb-3" id="curso" name="curso">
+                                    <option value="" selected disabled>Curso<span class="asterisco-required"> *</span> </option>
                                     <option value="ccomp">Ciência da Computação</option>
                                     <option value="log">Logística</option>
                                     <option value="msi">Manutenção e Suporte em Informática</option>
                                     <option value="agro">Agronegócio</option>
-                                  </select>
+                                </select>
+                                <div id="curso_err" class="invalid-feedback"></div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-2">
-                                <select class="form-select form-select-lg mb-3">
-                                    <option selected>Turma<span class="asterisco-required"> *</span></option>
+                                <select id="turma" class="form-select form-select-lg mb-3" name="turma">
+                                    <option value="" selected disabled>Turma<span class="asterisco-required"> *</span></option>
                                     <option value="1per">1° Período</option>
                                     <option value="2per">2° Período</option>
                                     <option value="3per">3° Período</option>
@@ -93,18 +95,20 @@
                                     <option value="3ano">3° Ano</option>
                                   </select>
                             </div>
+                            <div id="turma_err" class="invalid-feedback"></div>
                         </div>
                     </div>
                     <div class="form-floating mb-2">
                         <textarea id="msg" name="msg" placeholder="Mensagem" class="form-control" rows="7" style="height: 100px"></textarea>
                         <label for="msg">Informações</label>
-                        <div id="msg_err"></div>
+                        <div id="msg_err" class="invalid-feedback"></div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <label for="file" class="form-label"></label>
-                                <input class="form-control formArquivo" type="file" id="file">
+                                <label for="arquivo" class="form-label"></label>
+                                <input class="form-control formArquivo" type="file" id="arquivo">
+                                <div id="arquivo_err" class="invalid-feedback"></div>
                             </div>
                         </div>
                     </div>
@@ -118,85 +122,47 @@
                               </div>
                         </div>
                     </div>
+                    <br>
                     <div class="d-md-block d-grid">
                         <input value="Enviar" type="submit" class="btn btn-primary" />
                     </div>
                 </div>
             </form>
         </main>
-        <script>
-            validate = {
-                /** Função para validar nomes. */
-                nome: function(s)  {
-                    let s_fmt = this.string_all_trim(s) // string formatada, tratada
-                    if ( !s_fmt ) // check string vazia (ou null)
-                        return false
-                    if ( s_fmt.split(' ').length < 2 ) // check para nome e sobrenome
-                        return false
-                    return true
-                },
-                email: function(s) {
-                    regex_email = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/
-                    let s_fmt = this.string_all_trim(s)
-                    if ( !regex_email.test(s_fmt) )
-                        return false
-                    return true
-                },
-                telefone: function(s) {
-                    regex_telf = /^\d{2}\d{4,5}\d{4}$/
-                    let s_fmt = this.string_all_trim(s)
-                    if ( !regex_telf.test(s_fmt) )
-                        return false
-                    return true
-                },
-                msg: function(s) {
-                    let s_fmt = this.string_all_trim(s)
-                    if ( !s_fmt || s_fmt.length < 80 )
-                        return false
-                    return true
-                },
-                string_all_trim: function(s) {
-                    if ( !s ) // é o mesmo que ( (s === null) || (s === '') )
-                        return s
-                    // s.replace(/\s+/,' '), substitui espaçamentos duplos ou mais por simples ' '
-                    // s = s.replace(/^\s+|\s+$/,''), remove os espaçamentos antes ou depois da string
-                    return s.replace(/\s+/g,' ').replace(/^\s+|\s+$/g,'')
-                }
-            }
+        <script type="module">
+            import ContactForm from './form-requerimento.js'
+            new ContactForm('form-atestado')
 
-            for (const id of ['nome', 'email', 'telefone', 'msg']) {
-                document.getElementById(id).addEventListener('change', (ev) => {
-                    ev.target.value = validate.string_all_trim( ev.target.value )
-                })
+            /*let formulario = document.getElementById('form-atestado');
+            formulario.addEventListener('submit', function(event) {
+            event.preventDefault(); // previne o envio do formulário
+            let select = document.getElementById('curso');
+            if (select.value == '') {
+                // exibir mensagem de erro
+                let elemento = document.getElementById('curso');
+                elemento.classList.add('is-invalid');
+                let mensagem = document.getElementById('curso_err');
+                mensagem.innerText = 'Selecione um curso';
             }
+            select = document.getElementById('turma');
+            if (select.value == '') {
+                // exibir mensagem de erro
+                let elemento = document.getElementById('turma');
+                elemento.classList.add('is-invalid');
+                let mensagem = document.getElementById('turma_err');
+                mensagem.innerText = 'Selecione uma turma';
+            }
+            let fileInput = document.getElementById('arquivo');
+            if (fileInput.value == '') {
+                let elemento = document.getElementById('arquivo');
+                elemento.classList.add('is-invalid');
+                let mensagem = document.createElement('div');
+                mensagem.classList.add('invalid-feedback');
+                mensagem.innerText = 'Selecione um arquivo';
+                elemento.parentNode.appendChild(mensagem);
+            }
+            });*/
 
-            const main_form = document.getElementById('form_atestado')
-            main_form.addEventListener( 'submit', (ev) => {
-                const form_data = new FormData( main_form )
-                console.log( JSON.stringify(Object.fromEntries(form_data)) )
-                let msg_dict = {
-                    'nome_err':'', 'email_err':'', 'telefone_err':'', 'msg_err':'' }
-                if ( !validate.nome(form_data.get('nome')) )
-                    msg_dict['nome_err'] = 'Nome inválido!'
-                if ( !validate.email(form_data.get('email')) )
-                    msg_dict['email_err'] = 'Email inválido!'
-                if ( !validate.telefone(form_data.get('telefone')) )
-                    msg_dict['telefone_err'] = 'Telefone inválido!'
-                if ( !validate.msg(form_data.get('msg')) )
-                    msg_dict['msg_err'] = 'Mensagem inválida!'
-                //
-                let ok = true
-                for (const [key, value] of Object.entries(msg_dict)) {
-                    document.getElementById(key).innerText = value
-                    if ( value.length > 0 )
-                        ok = false
-                }
-                if ( ok )
-                    return true
-                ev.preventDefault()  // interrompe o submit no caso de erro no form
-                ev.stopPropagation()
-                return false
-            })
         </script>
     </body>
 </html>
