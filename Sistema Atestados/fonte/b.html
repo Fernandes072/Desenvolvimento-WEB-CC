@@ -23,7 +23,7 @@
 
         <main id="main-block">
             <form id="form-atestado" class="col-xxl-6 col-xl-7 col-lg-8 col-md-9 col-12 rounded px-4 py-3 ca-block">
-                <div class="container" style="margin-left: 500px; background-color: red;">
+                <div class="container">
                     <div class="row">
                         <div class="col">
                             <div class="form-floating mb-2">
@@ -67,27 +67,36 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div class="mb-2 form-floating">
-                                <select class="form-select form-select-lg mb-3" id="curso" name="curso" aria-label="Floating label select example">
-                                    <option value="" selected disabled>Selecione um curso</option>
-                                    <option value="ccomp">Ciência da Computação</option>
-                                    <option value="log">Logística</option>
-                                    <option value="msi">Manutenção e Suporte em Informática</option>
-                                    <option value="agro">Agronegócio</option>
-                                </select>
-                                <label for="curso">Curso</label>
-                                <div id="curso_err" class="invalid-feedback"></div>
-                            </div>
+                          <div class="mb-2 form-floating">
+                              <select id="modalidade" class="form-select form-select-lg mb-3" name="modalidade">
+                                <option value="" selected disabled>Selecione</option>
+                                <option value="inte">Integrado</option>
+                                <option value="subs">Subsequente</option>
+                                <option value="grad">Graduação</option>
+                              </select>
+                              <label for="modalidade">Modalidade<span class="asterisco-required"> *</span></label>
+                            <div id="modalidade_err" class="invalid-feedback"></div>
+                          </div>
                         </div>
                         <div class="col">
-                            <div class="mb-2">
-                                <select id="turma" class="form-select form-select-lg mb-3" name="turma">
-                                    <option value="" selected disabled>Turma<span class="asterisco-required"> *</span></option>
-                                  </select>
-                                <div id="turma_err" class="invalid-feedback"></div>
-                            </div>
+                          <div class="mb-2 form-floating">
+                            <select class="form-select form-select-lg mb-3" id="curso" name="curso" aria-label="Floating label select example">
+                              <option value="" selected disabled>Selecione</option>
+                            </select>
+                            <label for="curso">Curso</label>
+                            <div id="curso_err" class="invalid-feedback"></div>
+                          </div>
                         </div>
-                    </div>
+                          <div class="col">
+                            <div class="mb-2 form-floating">
+                              <select id="turma" class="form-select form-select-lg mb-3" name="turma">
+                                <option value="" selected disabled>Selecione</option>
+                              </select>
+                              <label for="turma">Turma<span class="asterisco-required"> *</span></label>
+                              <div id="turma_err" class="invalid-feedback"></div>
+                            </div>
+                          </div>  
+                      </div>
                     <div class="form-floating mb-2">
                         <textarea id="msg" name="msg" placeholder="Mensagem" class="form-control" rows="7" style="height: 100px"></textarea>
                         <label for="msg">Informações</label>
@@ -205,8 +214,21 @@
                 })
             }
 
-            let turmasPorCurso = {
-            'ccomp': [
+            let cursosPorModalidade = {
+            'inte': [
+                { id: 'iagro', nome: 'Agronegócio' },
+                { id: 'imsi', nome: 'Manutenção e Suporte em Informática' }
+            ],
+            'subs': [
+                { id: 'sagro', nome: 'Agronegócio' }
+            ],
+            'grad': [
+                { id: 'ccomp', nome: 'Ciência da Computação' },
+                { id: 'log', nome: 'Logística' }
+            ],
+            };
+    let turmasPorModalidade = {
+            'grad': [
                 { id: '1per', nome: '1° Período' },
                 { id: '2per', nome: '2° Período' },
                 { id: '3per', nome: '3° Período' },
@@ -216,7 +238,7 @@
                 { id: '7per', nome: '7° Período' },
                 { id: '8per', nome: '8° Período' }
             ],
-            'log': [
+            'subs': [
                 { id: '1per', nome: '1° Período' },
                 { id: '2per', nome: '2° Período' },
                 { id: '3per', nome: '3° Período' },
@@ -224,34 +246,44 @@
                 { id: '5per', nome: '5° Período' },
                 { id: '6per', nome: '6° Período' },
             ],
-            'msi': [
+            'inte': [
                 { id: '1ano', nome: '1° Ano' },
                 { id: '2ano', nome: '2° Ano' },
                 { id: '3ano', nome: '3° Ano' },
-            ],
-            'agro': [
-                { id: '1per', nome: '1° Período' },
-                { id: '2per', nome: '2° Período' },
-                { id: '3per', nome: '3° Período' },
-                { id: '4per', nome: '4° Período' },
-                { id: '5per', nome: '5° Período' },
-                { id: '6per', nome: '6° Período' },
-                { id: '1ano', nome: '1° Ano' },
-                { id: '2ano', nome: '2° Ano' },
-                { id: '3ano', nome: '3° Ano' }
             ]
             };
 
             let cursoSelect = document.getElementById('curso');
             let turmaSelect = document.getElementById('turma');
+            let modalidadeSelect = document.getElementById('modalidade');
             
-            cursoSelect.addEventListener('change', function() {
-            let cursoId = cursoSelect.value;
-            if (cursoId) {
+            modalidadeSelect.addEventListener('change', function() {
+            let modalidadeId = modalidadeSelect.value;
+            if (modalidadeId) {
                 // curso selecionado, buscar turmas correspondentes
-                let turmas = turmasPorCurso[cursoId];
+                let cursos = cursosPorModalidade[modalidadeId];
                 // limpar opções anteriores
-                turmaSelect.innerHTML = '<option value="">Selecione uma turma</option>';
+                cursoSelect.innerHTML = '<option value="" selected disabled>Selecione</option>';
+                // adicionar novas opções
+                cursos.forEach(curso => {
+                let option = document.createElement('option');
+                option.value = curso.id;
+                option.text = curso.nome;
+                cursoSelect.add(option);
+                });
+            } else {
+                // curso não selecionado, limpar opções de turma
+                cursoSelect.innerHTML = '<option value="" selected disabled>Selecione</option>';
+            }
+            });
+
+            modalidadeSelect.addEventListener('change', function() {
+            let modalidadeId = modalidadeSelect.value;
+            if (modalidadeId) {
+                // curso selecionado, buscar turmas correspondentes
+                let turmas = turmasPorModalidade[modalidadeId];
+                // limpar opções anteriores
+                turmaSelect.innerHTML = '<option value="" selected disabled>Selecione</option>';
                 // adicionar novas opções
                 turmas.forEach(turma => {
                 let option = document.createElement('option');
@@ -261,10 +293,9 @@
                 });
             } else {
                 // curso não selecionado, limpar opções de turma
-                turmaSelect.innerHTML = '<option value="">Selecione um curso primeiro</option>';
+                turmaSelect.innerHTML = '<option value="" selected disabled>Selecione</option>';
             }
             });
-
             const main_form = document.getElementById('form-atestado')
             main_form.addEventListener( 'submit', (ev) => {
                 const form_data = new FormData( main_form )
